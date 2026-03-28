@@ -2,7 +2,7 @@ import random
 
 def generar_deduccion(numero_deducciones):
     
-    listaValor = [10, 20, 30, 40, 50]  # Ejemplo de valores posibles para las deducciones
+    listaValor = [10, 20, 30, 40, 80]  # Ejemplo de valores posibles para las deducciones
 
     deducciones = []
     for _ in range(numero_deducciones):
