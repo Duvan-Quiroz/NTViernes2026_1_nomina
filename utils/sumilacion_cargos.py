@@ -1,6 +1,6 @@
 import random
 
-def generar_cargo(numeroCargos):
+def generar_cargos(numeroCargos):
 
     listaNombres = [
         "Instructor",

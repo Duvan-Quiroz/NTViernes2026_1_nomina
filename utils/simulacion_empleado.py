@@ -1,5 +1,6 @@
 import random
 
+
 def crear_empleados(nominaEmpleados):
     nombreEmpleados = ["Luis Perez", "Laura Rojas", "Jhon Cuesta", "Camilo Vega", "Alejandro Castrillon"]
     documentoEmpleados = ["123", "125", "145", "1000", "999"]
