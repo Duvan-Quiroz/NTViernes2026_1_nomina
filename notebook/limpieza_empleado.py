@@ -26,4 +26,8 @@ def limpiar_datos_empleado(data_frame):
 
     #6 Eliminar duplicados
     data_frame_limpio=data_frame_limpio.drop_duplicates()
+
+    #7 Eliminar filas con datos obligatorios vacios
+    columnas_obligatorias=["id","nombre","documento","salario"]
+    data_frame_limpio=data_frame_limpio.dropna(subset=columnas_obligatorias)
     return data_frame_limpio
