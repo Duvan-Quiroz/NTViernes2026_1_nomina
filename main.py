@@ -8,11 +8,13 @@ from utils.simulacion_pagos import generar_pagonomina
 from utils.simulacionDeduccion import generar_deduccion
 from utils.sumilacion_cargos import generar_cargos
 
+
 #Importar limpieza
 from notebook.limpieza_empleado import limpiar_datos_empleado
 from notebook.limpieza_pagos import limpiar_pagos
 from notebook.limpieza_bonificacion import limpieza_bonificacion
 from notebook.limpieza_cargos import limpiar_datos_cargo
+from notebook.limpieza_nomina import limpiar_datos_nomina
 
 
 #Importar descripcion
@@ -20,6 +22,7 @@ from notebook.descripcion_empleado import describir_empleados
 from notebook.descripcion_pago import describir_pagos
 from notebook.descripcion_bonificacion import descripcion_bonificacion
 from notebook.descripcion_cargos import descripcion_cargos
+from notebook.descripcion_nomina import descripcion_nomina
 
 
 
@@ -46,8 +49,12 @@ simulaciones_limpias=limpiar_datos_empleado(simulacion_empleado)
 simulaciones_limpias_pagos=limpiar_pagos(simulacion_pagonomina)
 simulacion_limpias_bonificacion=limpieza_bonificacion(simulacion_bonificacion)
 simulacion_limpias_cargos=limpiar_datos_cargo(simulacion_cargos)
+simulacion_limpias_nomina=limpiar_datos_nomina(simulacion_nomina)
 
 
 #Descripcion de datos
 describir_empleados(simulaciones_limpias)
 describir_pagos(simulaciones_limpias_pagos)
+descripcion_bonificacion(simulacion_bonificacion)
+descripcion_cargos(simulacion_cargos)
+descripcion_nomina(simulacion_nomina)
