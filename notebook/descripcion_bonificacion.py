@@ -10,11 +10,13 @@ def descripcion_bonificacion(data_frame_limpio):
 
 
    #Estadisticas
+def descripcion_estadisticas(data_frame_limpio):   
     print("***ESTADISTICAS***")
     print(f"{data_frame_limpio[["id","valor"]].describe()}")
 
 
     #Conteos
+def descripcion_conteo(data_frame_limpio):    
     print("***CONTEOS***")
     print(f"{data_frame_limpio["id"].value_counts()}")
     print(f"{data_frame_limpio["valor"].value_counts()}")
