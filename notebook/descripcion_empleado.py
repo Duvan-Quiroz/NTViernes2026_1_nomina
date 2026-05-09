@@ -10,11 +10,13 @@ def describir_empleados(data_frame_limpio):
 
 
    #Estadisticas
+def describir_estadisticas(data_frame_limpio):
     print("***ESTADISTICAS***")
     print(f"{data_frame_limpio[["id","salario"]].describe()}")
 
 
     #Conteos
+def describir_conteos(data_frame_limpio):    
     print("***CONTEOS***")
     print(f"{data_frame_limpio["nombre"].value_counts()}")
     print(f"{data_frame_limpio["salario"].value_counts()}")
