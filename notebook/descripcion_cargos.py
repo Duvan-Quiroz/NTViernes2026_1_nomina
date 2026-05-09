@@ -1,6 +1,6 @@
 import pandas as pd
 
-def descripcion_bonificacion(data_frame_limpio):
+def descripcion_cargos(data_frame_limpio):
 
     print("*** DESCRIPCION DEL DATASET ***")
     print(f"Número de filas del dataset: {data_frame_limpio.shape[0]}")
