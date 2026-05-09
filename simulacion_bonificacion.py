@@ -14,12 +14,5 @@ def generar_bonificacion(numeroBonificacion):
              "valor" : random.choice(valoresBonificacion),
         }
 
-        probabilidadError = random.random()
-
-        if probabilidadError < 0.1:
-            bonificacion["id"] = random.choice([-1, -24, 0])
-        elif probabilidadError < 0.2:
-           bonificacion["valor"] = random.choice([-1000, -500, 0])   
-          
         bonificaciones.append(bonificacion)
     return bonificaciones

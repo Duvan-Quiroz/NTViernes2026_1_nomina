@@ -1,6 +1,6 @@
 import random
 
-def generar_cargos(numeroCargos):
+def generar_cargo(numeroCargos):
 
     listaNombres = [
         "Instructor",
@@ -31,16 +31,6 @@ def generar_cargos(numeroCargos):
             "nombre": random.choice(listaNombres),
             "descripcion": random.choice(listaDescripciones)
         }
-        
-        probabilidad_error = random.random()
-
-        if probabilidad_error < 0.1:
-            cargo["id"] = ["id"] = random.choice([-1, -24, 0])
-        elif probabilidad_error < 0.2:
-            cargo["nombre"] = " " + cargo["nombre"].lower()
-        elif probabilidad_error < 0.3:
-            cargo["descripcion"] = " " + cargo["descripcion"] + " "
-        
 
         cargos.append(cargo)
 
