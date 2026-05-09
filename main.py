@@ -15,6 +15,7 @@ from notebook.limpieza_pagos import limpiar_pagos
 
 #Importar descripcion
 from notebook.descripcion_empleado import describir_empleados
+from notebook.descripcion_pago import describir_pagos
 
 
 
@@ -42,3 +43,4 @@ simulaciones_limpias_pagos=limpiar_pagos(simulacion_pagonomina)
 
 #Descripcion de datos
 describir_empleados(simulaciones_limpias)
+describir_pagos(simulaciones_limpias_pagos)
