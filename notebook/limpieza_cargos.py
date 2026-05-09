@@ -1,6 +1,6 @@
 import pandas as pd
 
-def limpiar_datos_empleado(data_frame):
+def limpiar_datos_cargo(data_frame):
     data_frame_limpio=data_frame.copy()
 
     datos_texto=["nombre", "descripcion"]
