@@ -20,6 +20,14 @@ def generar_nomina(numeroEmpleado):
              "salarioBase" : random.choice(salarios),
         }
 
+        #Inyectar errores controlados en nuestra base de datos
+        probabilidadError = random.random()
+        if probabilidadError < 0.1:  # 10% de probabilidad de error
+            empleado["salarioBase"] = None  # Salario base faltante
+        elif probabilidadError < 0.2:  # 10% de probabilidad de error
+            empleado["fecha"] = "2020-13-01"  # Fecha inválida  
+        elif probabilidadError < 0.3:
+            empleado["id"] = random.choice([-1, -24, 0]) # ID inválido
         empleados.append(empleado)
     return empleados
        
