@@ -43,6 +43,17 @@ from notebook.transformacion_cargos import transformar_datos as transformar_carg
 from notebook.graficacion_cargos import graficar_barras as barras_cargo
 from notebook.graficacion_cargos import graficar_torta as torta_cargo
 
+
+#**********************DEDUCCIONES ***********************
+from notebook.consumo_deduccion import consumo_deduccion
+from notebook.limpieza_deduccion import limpiar_datos_deduccion
+from notebook.transformacion_deduccion import transformar_datos as transformar_deducciones
+from notebook.graficacion_deduccion import graficar_barras as barras_deduccion
+from notebook.graficacion_deduccion import graficar_lineas as lineas_deduccion
+from notebook.graficacion_deduccion import graficar_torta as torta_deduccion
+from notebook.graficacion_deduccion import graficar_mapa_calor as calor_deduccion
+
+
 #**********************EMPLEADOS ***********************
 datos_empleados = consumo_empleado()
 data_frame_empleados = pd.DataFrame(datos_empleados)
@@ -73,8 +84,13 @@ data_frame_cargos = pd.DataFrame(datos_cargos)
 data_frame_limpio_cargos = limpiar_datos_cargo(data_frame_cargos)
 agrupaciones_cargos = transformar_cargos(data_frame_limpio_cargos)
 
+#**********************DEDUCCIONES ***********************
+datos_deducciones = consumo_deduccion()
+data_frame_deducciones = pd.DataFrame(datos_deducciones)
+data_frame_limpio_deducciones = limpiar_datos_deduccion(data_frame_deducciones)
+agrupaciones_deducciones = transformar_deducciones(data_frame_limpio_deducciones)
+
 #**********************EMPLEADOS ***********************
-# ── GRÁFICOS EMPLEADOS ───────────────────────────────────────────
 barras_empleado(
     agrupaciones_empleados["empleados_nombre"],
     columna_categorias="nombre",
@@ -243,4 +259,42 @@ torta_cargo(
     titulo="Proporción de cargos",
     nombre_archivo="torta_cargos.png",
     lista_colores=["#FF9800", "#4CAF50", "#2196F3", "#E91E63", "#9C27B0", "#FF5733", "#27B049"]
+)
+
+#**********************DEDUCCIONES ***********************
+barras_deduccion(
+    agrupaciones_deducciones["deducciones_id"],
+    columna_categorias="id",
+    columna_valores="cantidad_deducciones",
+    titulo="Cantidad de deducciones por id",
+    nombre_archivo="barras_deduccion.png",
+    color_barras="#E91E63"
+)
+
+lineas_deduccion(
+    agrupaciones_deducciones["promedio_valor"],
+    columna_eje_x="id",
+    columna_eje_y="valor_promedio",
+    titulo="Valor promedio por deducción",
+    nombre_archivo="lineas_deduccion.png",
+    color_linea="#9C27B0"
+)
+
+torta_deduccion(
+    agrupaciones_deducciones["rangos_valor"],
+    columna_etiquetas="rango_valor",
+    columna_valores="cantidad",
+    titulo="Distribución de rangos de deducción",
+    nombre_archivo="torta_deduccion.png",
+    lista_colores=["#E91E63", "#4CAF50", "#2196F3"]
+)
+
+calor_deduccion(
+    agrupaciones_deducciones["total_deducido"],
+    columna_filas="id",
+    columna_columnas="id",
+    columna_valores="total_deducido",
+    titulo="Total deducido por id",
+    nombre_archivo="mapa_calor_deduccion.png",
+    paleta_color="Purples"
 )
