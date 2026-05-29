@@ -21,7 +21,7 @@ from notebook.graficacion_bonificacion import graficar_mapa_calor as calor_bonif
 #**********************NOMINA ***********************
 from notebook.consumo_nomina import consumo_nomina
 from notebook.limpieza_nomina import limpiar_datos_nomina
-from notebook.transformacion_nomina import transformar_datos as transformar_nomina
+from notebook.transformacion_nomina import transformar_datos_nomina as transformar_nomina
 from notebook.graficacion_nomina import graficar_barras as barras_nomina
 from notebook.graficacion_nomina import graficar_lineas as lineas_nomina
 from notebook.graficacion_nomina import graficar_torta as torta_nomina
