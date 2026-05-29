@@ -37,13 +37,13 @@ from notebook.graficacion_pagos import graficar_torta as torta_pago
 from notebook.graficacion_pagos import graficar_mapa_calor as calor_pago
 
 #**********************CARGOS ***********************
-from notebook.consumo_cargo import consumo_cargos
-from notebook.limpieza_cargo import limpiar_datos_cargo
-from notebook.transformacion_cargo import transformar_datos as transformar_cargos
-from notebook.graficacion_cargo import graficar_barras as barras_cargo
-from notebook.graficacion_cargo import graficar_torta as torta_cargo
-from notebook.graficacion_cargo import graficar_lineas as lineas_cargo
-from notebook.graficacion_cargo import graficar_mapa_calor as calor_cargo
+from notebook.consumo_cargo import consumo_cargo
+from notebook.limpieza_cargos import limpiar_datos_cargo
+from notebook.transformacion_cargos import transformar_datos as transformar_cargos
+from notebook.graficacion_cargos import graficar_barras as barras_cargo
+from notebook.graficacion_cargos import graficar_torta as torta_cargo
+from notebook.graficacion_cargos import graficar_lineas as lineas_cargo
+from notebook.graficacion_cargos import graficar_mapa_calor as calor_cargo
 
 
 #**********************DEDUCCIONES ***********************
@@ -82,7 +82,7 @@ data_frame_limpio_pagos = limpiar_pagos(data_frame_pagos)
 agrupaciones_pagos = transformar_pagos(data_frame_limpio_pagos)
 
 #**********************CARGOS ***********************
-datos_cargos = consumo_cargos()
+datos_cargos = consumo_cargo()
 data_frame_cargos = pd.DataFrame(datos_cargos)
 data_frame_limpio_cargos = limpiar_datos_cargo(data_frame_cargos)
 agrupaciones_cargos = transformar_cargos(data_frame_limpio_cargos)
