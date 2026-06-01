@@ -1,94 +1,103 @@
 import pandas as pd
 
 #**********************EMPLEADOS ***********************
-from notebook.consumo_empleado import consumo_empleado
+
 from notebook.limpieza_empleado import limpiar_datos_empleado
 from notebook.transformacion_empleado import transformar_datos as transformar_empleados
 from notebook.graficacion_empleado import graficar_lineas as lineas_empleado
 from notebook.graficacion_empleado import graficar_barras as barras_empleado
 from notebook.graficacion_empleado import graficar_torta as torta_empleado
 from notebook.graficacion_empleado import graficar_mapa_calor as calor_empleado
+from utils.simulacion_empleado import crear_empleados 
 
 #**********************BONIFICACIONES ***********************
-from notebook.consumo_bonificacion import consumo_bonificacion
+
 from notebook.limpieza_bonificacion import limpieza_bonificacion
 from notebook.transformacion_bonificacion import transformar_datos as transformar_bonificaciones
 from notebook.graficacion_bonificacion import graficar_barras as barras_bonificacion
 from notebook.graficacion_bonificacion import graficar_lineas as lineas_bonificacion
 from notebook.graficacion_bonificacion import graficar_torta as torta_bonificacion
 from notebook.graficacion_bonificacion import graficar_mapa_calor as calor_bonificacion
+from utils.simulacion_bonificacion import generar_bonificacion
 
 #**********************NOMINA ***********************
-from notebook.consumo_nomina import consumo_nomina
+
 from notebook.limpieza_nomina import limpiar_datos_nomina
 from notebook.transformacion_nomina import transformar_datos_nomina as transformar_nomina
 from notebook.graficacion_nomina import graficar_barras as barras_nomina
 from notebook.graficacion_nomina import graficar_lineas as lineas_nomina
 from notebook.graficacion_nomina import graficar_torta as torta_nomina
 from notebook.graficacion_nomina import graficar_mapa_calor as calor_nomina
+from utils.simulacion_nomina import generar_nomina
+
 
 #**********************PAGOS ***********************
-from notebook.consumo_pago import consumo_pago
+
 from notebook.limpieza_pagos import limpiar_pagos
 from notebook.transformacion_pagos import transformar_datos as transformar_pagos
 from notebook.graficacion_pagos import graficar_barras as barras_pago
 from notebook.graficacion_pagos import graficar_lineas as lineas_pago
 from notebook.graficacion_pagos import graficar_torta as torta_pago
 from notebook.graficacion_pagos import graficar_mapa_calor as calor_pago
+from utils.simulacion_pagos import generar_pagonomina
 
 #**********************CARGOS ***********************
-from notebook.consumo_cargo import consumo_cargo
+
 from notebook.limpieza_cargos import limpiar_datos_cargo
-from notebook.transformacion_cargos import transformar_datos as transformar_cargos
+from notebook.transformacion_cargos import transformar_cargos
 from notebook.graficacion_cargos import graficar_barras as barras_cargo
 from notebook.graficacion_cargos import graficar_torta as torta_cargo
 from notebook.graficacion_cargos import graficar_lineas as lineas_cargo
 from notebook.graficacion_cargos import graficar_mapa_calor as calor_cargo
+from utils.sumilacion_cargos import generar_cargos
+
 
 
 #**********************DEDUCCIONES ***********************
-from notebook.consumo_deduccion import consumo_deduccion
+
 from notebook.limpieza_deduccion import limpiar_datos_deduccion
 from notebook.transformacion_deduccion import transformar_datos as transformar_deducciones
 from notebook.graficacion_deduccion import graficar_barras as barras_deducciones
 from notebook.graficacion_deduccion import graficar_lineas as lineas_deducciones
 from notebook.graficacion_deduccion import graficar_torta as torta_deducciones
 from notebook.graficacion_deduccion import graficar_mapa_calor as calor_deducciones
+from utils.simulacionDeduccion import generar_deduccion 
 
 
 
 #**********************EMPLEADOS ***********************
-datos_empleados = consumo_empleado()
+datos_empleados = crear_empleados(100)
 data_frame_empleados = pd.DataFrame(datos_empleados)
 data_frame_limpio_empleados = limpiar_datos_empleado(data_frame_empleados)
 agrupaciones_empleados = transformar_empleados(data_frame_limpio_empleados)
 
+
 #**********************BONIFICACIONES ***********************
-datos_bonificaciones = consumo_bonificacion()
+datos_bonificaciones = generar_bonificacion(100)
 data_frame_bonificaciones = pd.DataFrame(datos_bonificaciones)
 data_frame_limpio_bonificaciones = limpieza_bonificacion(data_frame_bonificaciones)
 agrupaciones_bonificaciones = transformar_bonificaciones(data_frame_limpio_bonificaciones)
 
 #**********************NOMINA ***********************
-datos_nomina = consumo_nomina()
+datos_nomina = generar_nomina(100)
 data_frame_nomina = pd.DataFrame(datos_nomina)
 data_frame_limpio_nomina = limpiar_datos_nomina(data_frame_nomina)
 agrupaciones_nomina = transformar_nomina(data_frame_limpio_nomina)
 
 #**********************PAGOS ***********************
-datos_pagos = consumo_pago()
+datos_pagos = generar_pagonomina(100)
 data_frame_pagos = pd.DataFrame(datos_pagos)
 data_frame_limpio_pagos = limpiar_pagos(data_frame_pagos)
 agrupaciones_pagos = transformar_pagos(data_frame_limpio_pagos)
 
 #**********************CARGOS ***********************
-datos_cargos = consumo_cargo()
+datos_cargos = generar_cargos(100)
 data_frame_cargos = pd.DataFrame(datos_cargos)
 data_frame_limpio_cargos = limpiar_datos_cargo(data_frame_cargos)
 agrupaciones_cargos = transformar_cargos(data_frame_limpio_cargos)
 
 #**********************DEDUCCIONES ***********************
-datos_deducciones = consumo_deduccion()
+datos_deducciones = generar_deduccion(100)
 data_frame_deducciones = pd.DataFrame(datos_deducciones)
 data_frame_limpio_deducciones = limpiar_datos_deduccion(data_frame_deducciones)
 agrupaciones_deducciones = transformar_deducciones(data_frame_limpio_deducciones)
@@ -173,7 +182,7 @@ calor_bonificacion(
 
 #**********************NOMINA ***********************
 barras_nomina(
-    agrupaciones_nomina["nominas_id"],
+    agrupaciones_nomina["nominas_por_empleado"],
     columna_categorias="id",
     columna_valores="cantidad_nominas",
     titulo="Cantidad de nóminas por empleado",
@@ -182,7 +191,7 @@ barras_nomina(
 )
 
 lineas_nomina(
-    agrupaciones_nomina["nominas_mes"],
+    agrupaciones_nomina["nominas_por_mes"],
     columna_eje_x="mes",
     columna_eje_y="cantidad_nominas_mes",
     titulo="Nóminas por mes",
@@ -190,24 +199,9 @@ lineas_nomina(
     color_linea="#E91E63"
 )
 
-torta_nomina(
-    agrupaciones_nomina["rangos_salario"],
-    columna_etiquetas="rango_salario",
-    columna_valores="cantidad",
-    titulo="Distribución de rangos salariales nómina",
-    nombre_archivo="torta_nomina.png",
-    lista_colores=["#FF9800", "#4CAF50", "#2196F3"]
-)
 
-calor_nomina(
-    agrupaciones_nomina["promedio_salario"],
-    columna_filas="id",
-    columna_columnas="id",
-    columna_valores="salario_promedio",
-    titulo="Salario promedio por empleado",
-    nombre_archivo="mapa_calor_nomina.png",
-    paleta_color="Oranges"
-)
+
+
 
 #**********************PAGOS ***********************
 barras_pago(
@@ -248,74 +242,16 @@ calor_pago(
 )
 
 #**********************CARGOS ***********************
-barras_cargo(
-    agrupaciones_cargos["cargos_nombre"],
-    columna_categorias="nombre",
-    columna_valores="cantidad_cargos",
-    titulo="Cantidad de cargos por nombre",
-    nombre_archivo="barras_cargos.png",
-    color_barras="#2196F3"
-)
 
-torta_cargo(
-    agrupaciones_cargos["cargos_nombre"],
-    columna_etiquetas="nombre",
-    columna_valores="cantidad_cargos",
-    titulo="Proporción de cargos",
-    nombre_archivo="torta_cargos.png",
-    lista_colores=["#FF9800", "#4CAF50", "#2196F3", "#E91E63", "#9C27B0", "#FF5733", "#27B049"]
-)
 
-lineas_cargo(
-    agrupaciones_cargos["promedio_valor"],
-    columna_eje_x="nombre",
-    columna_eje_y="valor_promedio",
-    titulo="Valor promedio por cargo",
-    nombre_archivo="lineas_cargos.png",
-    color_linea="#2196F3"
-)
 
-calor_cargo(
-    agrupaciones_cargos["cargos_empleado"],
-    columna_filas="id_empleado",
-    columna_columnas="id_empleado",
-    columna_valores="total_cargo",
-    titulo="Total cargo por empleado",
-    nombre_archivo="mapa_calor_cargos.png",
-    paleta_color="YlOrRd"
-)
 
 #**********************DEDUCCIONES ***********************
 barras_deducciones(
-    agrupaciones_deducciones["deducciones_tipo"],
-    columna_categorias="tipo",
+    agrupaciones_deducciones["deducciones_id"],
+    columna_categorias="id",
     columna_valores="cantidad_deducciones",
-    titulo="Cantidad de deducciones por tipo",
+    titulo="Cantidad de deducciones por id",
     nombre_archivo="barras_deducciones.png",
-    color_barras="#E91E63"
-)   
-lineas_deducciones(
-    agrupaciones_deducciones["promedio_valor"],
-    columna_eje_x="tipo",
-    columna_eje_y="valor_promedio",
-    titulo="Valor promedio por tipo de deducción",
-    nombre_archivo="lineas_deducciones.png",
-    color_linea="#9C27B0"
-)
-torta_deducciones(
-    agrupaciones_deducciones["rangos_valor"],
-    columna_etiquetas="rango_valor",
-    columna_valores="cantidad",
-    titulo="Distribución de rangos de deducción",
-    nombre_archivo="torta_deducciones.png",
-    lista_colores=["#E91E63", "#9C27B0", "#FF5733"]
-)
-calor_deducciones(
-    agrupaciones_deducciones["deducciones_empleado"],
-    columna_filas="id_empleado",
-    columna_columnas="id_empleado",
-    columna_valores="total_deduccion",
-    titulo="Total deducción por empleado",
-    nombre_archivo="mapa_calor_deducciones.png",
-    paleta_color="YlOrRd"
+    color_barras="#FF9800"
 )

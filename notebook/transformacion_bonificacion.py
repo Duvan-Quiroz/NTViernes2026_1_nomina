@@ -26,4 +26,12 @@ def transformar_datos(data_frame_limpio):
 
     # Transformación 5 (total bonificado por id)
     filtro5 = data_frame_limpio
-    agrupaci
+    agrupacion5 = filtro5.groupby("id")["valor"].sum().reset_index(name="total_bonificado")
+    
+    return {
+        "bonificaciones_id": agrupacion1,
+        "promedio_valor": agrupacion2,
+        "bonificaciones_valor_alto": agrupacion3,
+        "rangos_valor": agrupacion4,
+        "total_bonificado": agrupacion5
+    }

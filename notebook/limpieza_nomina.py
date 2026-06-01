@@ -1,27 +1,30 @@
 import pandas as pd
+
 def limpiar_datos_nomina(data_frame_sucio):
-    data_frame_limpio=data_frame_sucio.copy()
+    # Hacemos una copia para no modificar los datos originales por accidente
+    data_frame_limpio = data_frame_sucio.copy()
 
-    #1 Limpiar espacios en blanco en las columnas de texto
-    datos_texto=["periodo", "tipo_pago"]
-    for columna in datos_texto:
-        data_frame_limpio[columna] = data_frame_limpio[columna].str.strip()
-
-    #2 Eliminar filas con valores nulos en columnas críticas
-    columnas_criticas=["id_empleado", "fecha_pago", "salario_base"] 
+    # --- 1. Eliminar filas con valores nulos en columnas críticas ---
+    # En tu simulación, el 10% de los datos genera 'salarioBase' como None
+    columnas_criticas = ["id", "fecha", "salarioBase"] 
     data_frame_limpio = data_frame_limpio.dropna(subset=columnas_criticas)
     
+    # --- 2. Convertir tipos de datos y capturar errores ---
+    # Convertimos el ID a entero
+    data_frame_limpio["id"] = data_frame_limpio["id"].astype(int)
     
-    #3 Convertir tipos de datos
-    data_frame_limpio["id_empleado"] = data_frame_limpio["id_empleado"].astype(int)
-    data_frame_limpio["fecha_pago"] = pd.to_datetime(data_frame_limpio["fecha_pago"], errors='coerce')
-    data_frame_limpio["salario_base"] = pd.to_numeric(data_frame_limpio["salario_base"], errors='coerce')
+    # errors='coerce' transformará la fecha inválida "2020-13-01" en un valor Nat (Not a Time/Nulo)
+    data_frame_limpio["fecha"] = pd.to_datetime(data_frame_limpio["fecha"], errors='coerce')
     
+    # Convertimos el salario a numérico por si acaso
+    data_frame_limpio["salarioBase"] = pd.to_numeric(data_frame_limpio["salarioBase"], errors='coerce')
     
-    #4 Eliminar filas con fechas inválidas o salarios no numéricos  
-    data_frame_limpio = data_frame_limpio.dropna(subset=["fecha_pago", "salario_base"])
+    # --- 3. Eliminar los registros dañados por la conversión ---
+    # Aquí borramos las filas donde la fecha se rompió ("2020-13-01") o el salario no sea un número
+    data_frame_limpio = data_frame_limpio.dropna(subset=["fecha", "salarioBase"])
 
+    # --- 4. Limpieza lógica de IDs de la simulación ---
+    # Tu simulación inyecta IDs como -1, -24 o 0. Un ID válido debe ser mayor a 0.
+    data_frame_limpio = data_frame_limpio[data_frame_limpio["id"] > 0]
     
     return data_frame_limpio
-
-    

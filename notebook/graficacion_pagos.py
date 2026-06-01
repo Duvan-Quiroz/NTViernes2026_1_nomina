@@ -2,7 +2,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 
-RUTA_ASSETS = os.path.join(os.path.dirname(__file__), "graficos")
+
+RUTA_PUBLIC_FRONT = os.path.join(
+    os.path.dirname(__file__), "..", "..", "nomina", "public", "graficos"
+)
 
 
 def crear_ruta_si_no_existe(ruta_destino):
@@ -11,7 +14,7 @@ def crear_ruta_si_no_existe(ruta_destino):
 
 def graficar_lineas(datos_agrupados, columna_eje_x, columna_eje_y,
                     titulo="Gráfico de líneas", color_linea="#2196F3",
-                    nombre_archivo="lineas_pagos.png", ruta_destino=RUTA_ASSETS):
+                    nombre_archivo="lineas_pagos.png", ruta_destino=RUTA_PUBLIC_FRONT):
     # Útil para mostrar tendencias, por ejemplo valor promedio por método
 
     crear_ruta_si_no_existe(ruta_destino)
@@ -42,7 +45,7 @@ def graficar_lineas(datos_agrupados, columna_eje_x, columna_eje_y,
 
 def graficar_barras(datos_agrupados, columna_categorias, columna_valores,
                     titulo="Gráfico de barras", color_barras="#4CAF50",
-                    nombre_archivo="barras_pagos.png", ruta_destino=RUTA_ASSETS):
+                    nombre_archivo="barras_pagos.png", ruta_destino=RUTA_PUBLIC_FRONT):
     # Útil para comparar cantidades, por ejemplo pagos por método
 
     crear_ruta_si_no_existe(ruta_destino)
@@ -71,7 +74,7 @@ def graficar_barras(datos_agrupados, columna_categorias, columna_valores,
 
 def graficar_torta(datos_agrupados, columna_etiquetas, columna_valores,
                    titulo="Gráfico de torta", lista_colores=None,
-                   nombre_archivo="torta_pagos.png", ruta_destino=RUTA_ASSETS):
+                   nombre_archivo="torta_pagos.png", ruta_destino=RUTA_PUBLIC_FRONT):
     # Útil para mostrar proporciones, por ejemplo distribución de rangos de valor
 
     crear_ruta_si_no_existe(ruta_destino)
@@ -104,7 +107,7 @@ def graficar_torta(datos_agrupados, columna_etiquetas, columna_valores,
 
 def graficar_mapa_calor(datos_agrupados, columna_filas, columna_columnas, columna_valores,
                         titulo="Mapa de calor", paleta_color="YlOrRd",
-                        nombre_archivo="mapa_calor_pagos.png", ruta_destino=RUTA_ASSETS):
+                        nombre_archivo="mapa_calor_pagos.png", ruta_destino=RUTA_PUBLIC_FRONT):
     # Útil para comparar dos variables, por ejemplo valor por método e id_empleado
 
     crear_ruta_si_no_existe(ruta_destino)

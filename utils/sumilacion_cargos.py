@@ -35,7 +35,7 @@ def generar_cargos(numeroCargos):
         probabilidad_error = random.random()
 
         if probabilidad_error < 0.1:
-            cargo["id"] = ["id"] = random.choice([-1, -24, 0])
+            cargo["id"] = random.choice([-1, -24, 0])
         elif probabilidad_error < 0.2:
             cargo["nombre"] = " " + cargo["nombre"].lower()
         elif probabilidad_error < 0.3:

@@ -8,14 +8,17 @@ import os
 import pandas as pd
 
 # Ruta donde se guardarán los gráficos dentro de tu proyecto Python
-RUTA_ASSETS = os.path.join(os.path.dirname(__file__), "graficos")
+
+RUTA_PUBLIC_FRONT = os.path.join(
+    os.path.dirname(__file__), "..", "..", "nomina", "public", "graficos"
+)
 
 def crear_ruta_si_no_existe(ruta_destino):
     os.makedirs(ruta_destino, exist_ok=True)
 
 def graficar_lineas(datos_agrupados, columna_eje_x, columna_eje_y,
                     titulo="Gráfico de líneas de deducciones", color_linea="#E91E63",
-                    nombre_archivo="deducciones_lineas.png", ruta_destino=RUTA_ASSETS):
+                    nombre_archivo="deducciones_lineas.png", ruta_destino=RUTA_PUBLIC_FRONT):
     crear_ruta_si_no_existe(ruta_destino)
     figura, area_dibujo = plt.subplots(figsize=(10, 5))
     area_dibujo.plot(
@@ -38,7 +41,7 @@ def graficar_lineas(datos_agrupados, columna_eje_x, columna_eje_y,
 
 def graficar_barras(datos_agrupados, columna_categorias, columna_valores,
                     titulo="Gráfico de barras de deducciones", color_barras="#9C27B0",
-                    nombre_archivo="deducciones_barras.png", ruta_destino=RUTA_ASSETS):
+                    nombre_archivo="deducciones_barras.png", ruta_destino=RUTA_PUBLIC_FRONT):
     crear_ruta_si_no_existe(ruta_destino)
     figura, area_dibujo = plt.subplots(figsize=(10, 5))
     area_dibujo.bar(
@@ -59,7 +62,7 @@ def graficar_barras(datos_agrupados, columna_categorias, columna_valores,
 
 def graficar_torta(datos_agrupados, columna_etiquetas, columna_valores,
                    titulo="Gráfico de torta de deducciones", lista_colores=None,
-                   nombre_archivo="deducciones_torta.png", ruta_destino=RUTA_ASSETS):
+                   nombre_archivo="deducciones_torta.png", ruta_destino=RUTA_PUBLIC_FRONT):
     crear_ruta_si_no_existe(ruta_destino)
     if lista_colores is None:
         lista_colores = ["#FF9800", "#2196F3", "#4CAF50", "#E91E63", "#9C27B0"]
@@ -82,7 +85,7 @@ def graficar_torta(datos_agrupados, columna_etiquetas, columna_valores,
 
 def graficar_mapa_calor(datos_agrupados, columna_filas, columna_columnas, columna_valores,
                         titulo="Mapa de calor de deducciones", paleta_color="YlOrRd",
-                        nombre_archivo="deducciones_mapa_calor.png", ruta_destino=RUTA_ASSETS):
+                        nombre_archivo="deducciones_mapa_calor.png", ruta_destino=RUTA_PUBLIC_FRONT):
     crear_ruta_si_no_existe(ruta_destino)
     tabla_pivote = datos_agrupados.pivot_table(
         index=columna_filas,

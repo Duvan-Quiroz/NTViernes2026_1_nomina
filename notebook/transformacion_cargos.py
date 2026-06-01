@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def transformar_datos(data_frame_limpio):
+def transformar_cargos(data_frame_limpio):
 
     # Transformación 1 (cargos por nombre)
     filtro1 = data_frame_limpio
